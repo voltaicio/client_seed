@@ -1,0 +1,20 @@
+{
+  "name": "client_seed",
+  "version": "0.0.1",
+  "description": "A starter project for AngularJS apps",
+  "repository": "https://github.com/voltaicio/client_seed",
+  "author": "Jonathan D. Baker <jonathan@voltaic.io> (https://voltaic.io)",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.4.1",
+    "http-server": "^0.8.0",
+    "jasmine-core": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4"
+  },
+  "scripts": {
+    "start": "http-server -a localhost -p 8000 -c-1",
+    "test": "karma start karma.conf.js"
+  }
+}
