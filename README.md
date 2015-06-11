@@ -12,10 +12,9 @@ $ git clone git@github.com:voltaicio/client_seed.git
 $ cd client_seed
 ```
 
-Install dependencies:
+Install dependencies (the following command will also install bower dependencies):
 ```
 $ npm install
-$ bower install
 ```
 
 ## Testing
