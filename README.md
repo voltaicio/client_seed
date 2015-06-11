@@ -8,13 +8,14 @@ down considerably and customized to better fit my needs.
 
 Clone the repo:
 ```
-$ git clone https://github.com/voltaicio/client_seed.git
+$ git clone git@github.com:voltaicio/client_seed.git
 $ cd client_seed
 ```
 
 Install dependencies:
 ```
 $ npm install
+$ bower install
 ```
 
 ## Testing

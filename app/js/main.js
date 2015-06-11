@@ -2,11 +2,11 @@
 
 angular.module("voltaic", [
     // 3rd party
-    "ngResource",
     "ui.router",
     // custom
     "errors",
-    "index"
+    "index",
+    "messages"
 ])
 
 

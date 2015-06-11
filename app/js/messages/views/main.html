@@ -1,0 +1,6 @@
+<ul>
+    <li ng-repeat="message in messagesCtrl.messages">
+        {{ message.type }} - {{ message.body }}
+        <span ng-click="closeMessage($index)">[X}</span>
+    </li>
+</ul>
