@@ -19,8 +19,9 @@ module.exports = function(config) {
     files: [
       'app/bower_components/angular/angular.min.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/angular-resource/angular-resource.min.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+      'app/bower_components/restangular/dist/restangular.min.js',
+      'app/bower_components/lodash/lodash.min.js',
       'app/js/**/app.js',
       'app/js/main.js',
       'app/js/tests/main.spec.js',
