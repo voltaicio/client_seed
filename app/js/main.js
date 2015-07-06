@@ -10,21 +10,21 @@ angular.module("voltaic", [
 ])
 
 
-.config(function($urlRouterProvider) {
+.config(["$urlRouterProvider", function($urlRouterProvider) {
     $urlRouterProvider.when("", "/");
     $urlRouterProvider.otherwise("/404");
-})
+}])
 
 
-.controller("AppCtrl", function($scope) {
+.controller("AppCtrl", ["$scope", function($scope) {
 
-})
+}])
 
 
-.run(function($rootScope) {
+.run(["$rootScope", function($rootScope) {
     $rootScope.$on(
             "$stateChangeStart",
             function(evt, toState, toParams, fromState, fromParams) {
         $rootScope.title = toState.title ? toState.title : "Voltaic";
     });
-});
+}]);

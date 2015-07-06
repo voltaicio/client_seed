@@ -7,17 +7,17 @@
 angular.module("messages", [])
 
 
-.controller("MessagesCtrl", function(Messages) {
+.controller("MessagesCtrl", ["Messages", function(Messages) {
     this.messages = Messages.getMessages();
 
     //
     this.closeMessage = function(index) {
         Messages.removeMessage(index);
     };
-})
+}])
 
 
-.directive("messages", function() {
+.directive("messages", [function() {
     return {
         restrict: "EA",
         controllerAs: "messagesCtrl",
@@ -25,10 +25,10 @@ angular.module("messages", [])
         templateUrl: "js/messages/views/_main.html",
         scope: {}
     };
-})
+}])
 
 
-.service("Messages", function() {
+.service("Messages", [function() {
     var messages = [];
 
     // adds a message to the list
@@ -45,4 +45,4 @@ angular.module("messages", [])
     this.removeMessage = function(index) {
         messages.splice(index, 1);
     };
-});
+}]);

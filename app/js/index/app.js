@@ -6,7 +6,7 @@ angular.module("index", [
 ])
 
 
-.config(function($stateProvider) {
+.config(["$stateProvider", function($stateProvider) {
     $stateProvider
         .state("index", {
             controller: "IndexCtrl",
@@ -14,9 +14,9 @@ angular.module("index", [
             title: "Index",
             url: "/"
         });
-})
+}])
 
 
-.controller("IndexCtrl", function($scope) {
+.controller("IndexCtrl", ["$scope", function($scope) {
 
-});
+}]);
