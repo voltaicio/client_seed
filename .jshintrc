@@ -1,6 +1,7 @@
 {
     "globalstrict": true,
     "globals": {
+        "__dirname": true,
         "afterEach": false,
         "angular": true,
         "beforeEach": false,

@@ -17,7 +17,7 @@ Install dependencies (the following command will also install bower dependencies
 $ npm install
 ```
 
-## Testing
+## Linting + Testing
 ```
-$ npm test
+$ gulp
 ```

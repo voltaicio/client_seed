@@ -3,6 +3,7 @@
 
 var gulp = require("gulp"),
     jshint = require("gulp-jshint"),
+    karma = require("karma").server,
     merge = require("merge-stream");
 
 //
@@ -19,10 +20,20 @@ gulp.task("lint", function() {
 });
 
 
-gulp.task("watch", function() {
-    gulp.watch("app/js/*.js", ["lint"]);
-    gulp.watch("app/js/*/*.js", ["lint"]);
+gulp.task("test", function(done) {
+    karma.start({
+        configFile: __dirname + "/karma.conf.js",
+        singleRun: true
+    }, done);
 });
+
+
+//
+gulp.task("watch", function() {
+    gulp.watch("app/js/*.js", ["lint", "test"]);
+    gulp.watch("app/js/*/*.js", ["lint", "test"]);
+});
+
 
 //
 gulp.task("default", ["lint", "watch"]);
