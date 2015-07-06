@@ -2,6 +2,7 @@
 
 
 angular.module("auth", [
+    "CFG",
     "ngStorage",
     "ui.router"
 ])
@@ -34,16 +35,15 @@ angular.module("auth", [
 
 //
 .controller("LoginCtrl", [
-        "$http", "$scope", "$sessionStorage", "$state", "AuthService",
-        function($http, $scope, $sessionStorage, $state, AuthService) {
+        "$http", "$scope", "$sessionStorage", "$state", "AuthService", "CFG",
+        function($http, $scope, $sessionStorage, $state, AuthService, CFG) {
 
     //
     $scope.login = function() {
         AuthService.login($scope.credentials).then(function(
                 data, status, headers, config) {
-            // @todo add API URL here
             // get record for authenticated user
-            $http.get("")
+            $http.get(CFG.apiUrl)
                 .then(function(response) {
                     $scope.setCurrentUser(response.data);
                     $sessionStorage.user = response.data;
@@ -64,8 +64,8 @@ angular.module("auth", [
 
 
 .factory("AuthService", [
-        "$http", "$rootScope", "$sessionStorage", "AUTH_EVENTS",
-        function($http, $rootScope, $sessionStorage, AUTH_EVENTS) {
+        "$http", "$rootScope", "$sessionStorage", "AUTH_EVENTS", "CFG",
+        function($http, $rootScope, $sessionStorage, AUTH_EVENTS, CFG) {
 
     return {
 
@@ -77,8 +77,7 @@ angular.module("auth", [
         //
         login: function(credentials) {
             return $http
-                // @todo add API URL here
-                .post("", credentials)
+                .post(CFG.apiUrl, credentials)
                 .success(function(data, status, headers, config) {
                     $sessionStorage.token = data.token;
                     $rootScope.$broadcast(AUTH_EVENTS.loggedIn);

@@ -22,8 +22,10 @@ module.exports = function(config) {
       'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
       'app/bower_components/restangular/dist/restangular.min.js',
       'app/bower_components/lodash/lodash.min.js',
+      'app/bower_components/ngstorage/ngStorage.min.js',
       'app/js/**/app.js',
       'app/js/main.js',
+      "app/js/cfg.js",
       'app/js/tests/main.spec.js',
       'app/js/**/tests/*.spec.js'
     ],
