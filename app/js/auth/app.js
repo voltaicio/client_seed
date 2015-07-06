@@ -43,7 +43,7 @@ angular.module("auth", [
         AuthService.login($scope.credentials).then(function(
                 data, status, headers, config) {
             // get record for authenticated user
-            $http.get(CFG.apiUrl)
+            $http.get(CFG.apiUrl + "users/current")
                 .then(function(response) {
                     $scope.setCurrentUser(response.data);
                     $sessionStorage.user = response.data;
@@ -77,7 +77,7 @@ angular.module("auth", [
         //
         login: function(credentials) {
             return $http
-                .post(CFG.apiUrl, credentials)
+                .post(CFG.apiUrl + "users", credentials)
                 .success(function(data, status, headers, config) {
                     $sessionStorage.token = data.token;
                     $rootScope.$broadcast(AUTH_EVENTS.loggedIn);
