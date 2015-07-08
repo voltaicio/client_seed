@@ -10,7 +10,7 @@ var gulp = require("gulp"),
 //
 gulp.task("build", function() {
     gulp.src("cfg")
-        .pipe(gulpNgConfig("CFG"))
+        .pipe(gulpNgConfig("cfg"))
         .pipe(gulp.dest("app/js"));
 });
 

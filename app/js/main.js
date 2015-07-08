@@ -36,10 +36,18 @@ angular.module("voltaic", [
 
 
 //
-.run(["$rootScope", function($rootScope) {
+.run(["$rootScope", "$state", "AuthService", function($rootScope, $state, AuthService) {
     $rootScope.$on(
             "$stateChangeStart",
             function(evt, toState, toParams, fromState, fromParams) {
+
+        // redirects to login view if authentication is required but missing 
+        if (toState.authenticate && !AuthService.isAuthenticated()) {
+            evt.preventDefault();
+            $state.go("login");
+        }
+
+        // sets the page title
         $rootScope.title = toState.title ? toState.title : "Voltaic";
     });
 }]);

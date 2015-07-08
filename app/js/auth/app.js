@@ -2,7 +2,7 @@
 
 
 angular.module("auth", [
-    "CFG",
+    "cfg",
     "ngStorage",
     "ui.router"
 ])
@@ -12,12 +12,14 @@ angular.module("auth", [
 .config(["$stateProvider", function($stateProvider) {
     $stateProvider
         .state("login", {
+            authenticate: false,
             controller: "LoginCtrl",
             templateUrl: "js/auth/views/_login.html",
             title: "Login",
             url: "/login"
         })
         .state("logout", {
+            authenticate: true,
             controller: "LogoutCtrl",
             templateUrl: "js/auth/views/_logout.html",
             title: "Logout",
@@ -35,15 +37,15 @@ angular.module("auth", [
 
 //
 .controller("LoginCtrl", [
-        "$http", "$scope", "$sessionStorage", "$state", "AuthService", "CFG",
-        function($http, $scope, $sessionStorage, $state, AuthService, CFG) {
+        "$http", "$scope", "$sessionStorage", "$state", "AuthService", "API_URL",
+        function($http, $scope, $sessionStorage, $state, AuthService, API_URL) {
 
     //
     $scope.login = function() {
         AuthService.login($scope.credentials).then(function(
                 data, status, headers, config) {
             // get record for authenticated user
-            $http.get(CFG.apiUrl + "users/current")
+            $http.get(API_URL + "users/current")
                 .then(function(response) {
                     $scope.setCurrentUser(response.data);
                     $sessionStorage.user = response.data;
@@ -64,8 +66,8 @@ angular.module("auth", [
 
 
 .factory("AuthService", [
-        "$http", "$rootScope", "$sessionStorage", "AUTH_EVENTS", "CFG",
-        function($http, $rootScope, $sessionStorage, AUTH_EVENTS, CFG) {
+        "$http", "$rootScope", "$sessionStorage", "AUTH_EVENTS", "API_URL",
+        function($http, $rootScope, $sessionStorage, AUTH_EVENTS, API_URL) {
 
     return {
 
@@ -77,7 +79,7 @@ angular.module("auth", [
         //
         login: function(credentials) {
             return $http
-                .post(CFG.apiUrl + "users", credentials)
+                .post(API_URL + "users", credentials)
                 .success(function(data, status, headers, config) {
                     $sessionStorage.token = data.token;
                     $rootScope.$broadcast(AUTH_EVENTS.loggedIn);
