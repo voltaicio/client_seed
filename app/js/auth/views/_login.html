@@ -1,1 +1,12 @@
 <h3>Login</h3>
+<form name="form">
+    <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" ng-model="credentials.email" required autofocus>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" ng-model="credentials.password" required>
+    </div>
+    <button type="submit" ng-click="login()" ng-disabled="form.$invalid || form.$pristine">Submit</button>
+</form>

@@ -9,7 +9,9 @@ angular.module("auth", [
 
 
 //
-.config(["$stateProvider", function($stateProvider) {
+.config(["$httpProvider", "$stateProvider", function($httpProvider, $stateProvider) {
+    $httpProvider.interceptors.push("AuthInterceptor");
+
     $stateProvider
         .state("login", {
             authenticate: false,
@@ -39,6 +41,8 @@ angular.module("auth", [
 .controller("LoginCtrl", [
         "$http", "$scope", "$sessionStorage", "$state", "AuthService", "API_URL",
         function($http, $scope, $sessionStorage, $state, AuthService, API_URL) {
+
+    $scope.credentials = {};
 
     //
     $scope.login = function() {
@@ -79,7 +83,7 @@ angular.module("auth", [
         //
         login: function(credentials) {
             return $http
-                .post(API_URL + "users", credentials)
+                .post(API_URL + "auth-token", credentials)
                 .success(function(data, status, headers, config) {
                     $sessionStorage.token = data.token;
                     $rootScope.$broadcast(AUTH_EVENTS.loggedIn);
@@ -97,7 +101,7 @@ angular.module("auth", [
 .factory("AuthInterceptor", ["$sessionStorage", function($sessionStorage) {
     return {
         request: function(config) {
-            config.headers = config.header || {};
+            config.headers = config.headers || {};
             if ($sessionStorage.token) {
                 config.headers.Authorization = "JWT " + $sessionStorage.token;
             }
