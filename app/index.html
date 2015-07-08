@@ -8,6 +8,10 @@
     </head>
     <body ng-controller="AppCtrl">
 
+        <div ng-show="currentUser">
+            <a ui-sref="logout">Logout</a>
+        </div>
+
         <div messages></div>
         <div ui-view></div>
 
